@@ -20,8 +20,10 @@ Route::get('/', function () {
 });
 
 Route::get("users/list", [UserController::class, 'index'])->middleware('auth');
-Route::get("/services", [ServiceController::class, 'index'])->name('services.index');
-Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create');
+Route::get("users/{id}", [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
+
+Route::get("/services", [ServiceController::class, 'index'])->name('services.index')->middleware('auth');;
+Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create')->middleware('auth');;
 Route::post("/services", [ServiceController::class, 'store'])->name('services.store')->middleware('auth');
 Route::get("/services/edit/{service}", [ServiceController::class, 'edit'])->name('services.edit')->middleware('auth');
 Route::post("/services/{service}", [ServiceController::class, 'update'])->name('services.update')->middleware('auth');

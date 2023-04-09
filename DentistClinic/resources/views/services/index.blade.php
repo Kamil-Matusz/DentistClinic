@@ -34,7 +34,7 @@
             <button class="btn btn-info btn-sm">Edit</button>
             </a>
             <a href="{{ route('services.show', $service->id) }}">
-            <button class="btn btn-info btn-sm primary">Details</button>
+            <button class="btn btn-info btn-sm">Details</button>
             </a>
             <button class="btn btn-danger btn-sm delete" data-id="{{ $service->id }}">Delete</button>
         </td>

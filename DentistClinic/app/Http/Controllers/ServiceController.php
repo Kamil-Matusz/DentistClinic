@@ -8,13 +8,15 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use function PHPUnit\Framework\throwException;
 
 class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index() : View 
     {
         return view('services.index',[
             'services'=> Service::all()
@@ -74,6 +76,16 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        try {
+            $product->delete();
+            return response()->json([
+                'status' => 'success'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Wystąpił błąd!'
+            ])->setStatusCode(500);
+        }
     }
 }

@@ -19,7 +19,11 @@
         <td>{{ $user-> name }}</td>
         <td>{{ $user-> email }}</td>
         <td>{{ $user-> phoneNumber }}</td>
-        <td>-</td>
+        <td>
+        <a href="{{ route('users.destroy', $user->id) }}">
+            <button class="btn btn-info btn-sm">Delete</button>
+            </a>
+        </td>
     </tr>
     @endforeach
   </tbody>
