@@ -21,7 +21,7 @@
         <td>{{ $user-> phoneNumber }}</td>
         <td>
         <a href="{{ route('users.destroy', $user->id) }}">
-            <button class="btn btn-info btn-sm">Delete</button>
+            <button class="btn btn-danger btn-sm">Delete</button>
             </a>
         </td>
     </tr>

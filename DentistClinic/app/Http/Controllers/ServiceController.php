@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Requests\StoreServiceRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use function PHPUnit\Framework\throwException;
 
@@ -34,9 +35,10 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(StoreServiceRequest $request) : RedirectResponse
     {
-        $service = new Service($request->all());
+        
+        $service = new Service($request->$validated());
         $service->save();
         return redirect(route('services.index'));
     }
@@ -64,9 +66,9 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service) : RedirectResponse
+    public function update(StoreServiceRequest $request, Service $service) : RedirectResponse
     {
-        $service->fill($request->all());
+        $service->fill($request->validated());
         $service->save();
         return redirect(route('services.index'));
     }

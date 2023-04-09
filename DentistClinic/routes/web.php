@@ -28,7 +28,7 @@ Route::post("/services", [ServiceController::class, 'store'])->name('services.st
 Route::get("/services/edit/{service}", [ServiceController::class, 'edit'])->name('services.edit')->middleware('auth');
 Route::post("/services/{service}", [ServiceController::class, 'update'])->name('services.update')->middleware('auth');
 Route::get("/services/{service}", [ServiceController::class, 'show'])->name('services.show');
-Route::delete("/services/{service}", [ServiceController::class, 'destroy'])->name('services.destroy')->middleware('auth');
+Route::delete("/services/{service}", [ServiceController::class, 'destroy'])->name('services.destroy')->middleware('auth'); 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

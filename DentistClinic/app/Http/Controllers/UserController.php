@@ -64,6 +64,6 @@ class UserController extends Controller
     {
         $flight = User::find($id);
         $flight->delete();
-        return redirect(route('users.index'));
+        return redirect('users/list');
     }
 }
