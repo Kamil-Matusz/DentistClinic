@@ -9,6 +9,7 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone Number</th>
+      <th scope="col">Created At</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -19,10 +20,12 @@
         <td>{{ $user-> name }}</td>
         <td>{{ $user-> email }}</td>
         <td>{{ $user-> phoneNumber }}</td>
+        <td>{{ $user-> created_at }}</td>
         <td>
-        <a href="{{ route('users.destroy', $user->id) }}">
-            <button class="btn btn-danger btn-sm">Delete</button>
-            </a>
+          <a href="{{ route('users.destroy', $user->id) }}">
+              <button class="btn btn-danger btn-sm">Delete</button>
+          </a>
+        </td>
         </td>
     </tr>
     @endforeach

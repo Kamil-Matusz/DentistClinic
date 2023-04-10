@@ -7,7 +7,7 @@
         <h1>Service List</h1>
     </div>
     <div class="col-2">
-          <a class="float-right" href="{{ route('services.create') }}"> <button type="button" class="btn btn-primary">Add new service</button></a>
+          <a class="float-right" href="{{ route('services.create') }}"> <button type="button" class="btn btn-success">Add new service</button></a>
         </div>
 </div>
 <div class="row">
@@ -31,12 +31,14 @@
         <td>{{ $service-> description }}</td>
         <td>
             <a href="{{ route('services.edit', $service->id) }}">
-            <button class="btn btn-info btn-sm">Edit</button>
+            <button class="btn btn-warning btn-sm">Edit</button>
             </a>
             <a href="{{ route('services.show', $service->id) }}">
             <button class="btn btn-info btn-sm">Details</button>
             </a>
-            <button class="btn btn-danger btn-sm delete" data-id="{{ $service->id }}">Delete</button>
+            <a href="{{ route('services.destroy', $service->id) }}">
+            <button class="btn btn-danger btn-sm">Delete</button>
+            </a>
         </td>
     </tr>
     @endforeach

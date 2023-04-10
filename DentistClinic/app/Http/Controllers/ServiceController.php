@@ -76,18 +76,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(string $id)
     {
-        try {
-            $product->delete();
-            return response()->json([
-                'status' => 'success'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Wystąpił błąd!'
-            ])->setStatusCode(500);
-        }
+        $flight = Service::find($id);
+        $flight->delete();
+        return redirect('/services');
     }
 }
