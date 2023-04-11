@@ -20,7 +20,7 @@ class ServiceController extends Controller
     public function index() : View 
     {
         return view('services.index',[
-            'services'=> Service::all()
+            'services'=> Service::paginate(5)
            ]);
     }
 
