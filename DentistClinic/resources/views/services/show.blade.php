@@ -28,7 +28,22 @@
                                 <textarea id="description" class="form-control" name="description" disabled>{{ $service->description }}</textarea>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                        <label for="type" class="col-md-4 col-form-label text-md-end">Type</label>
+
+                        <div class="col-md-6">
+                            <select id="price" class="form-control" name="type_id" disabled>
+                                @if($service->hasType())
+                                    <option>{{ $service->type->type_name }}</option>
+                                @else
+                                    <option>Brak</option>
+                                @endif
+                            </select>
                         </div>
+                        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceType;
 use Exception;
 
 use Illuminate\Http\RedirectResponse;
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\StoreServiceRequest;
@@ -20,7 +22,7 @@ class ServiceController extends Controller
     public function index() : View 
     {
         return view('services.index',[
-            'services'=> Service::paginate(5)
+            'services'=> Service::paginate(10)
            ]);
     }
 
@@ -29,7 +31,9 @@ class ServiceController extends Controller
      */
     public function create() : View
     {
-        return view('services.create');
+        return view("services.create", [
+            'types' => ServiceType::all()
+        ]);
     }
 
     /**
@@ -37,8 +41,7 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request) : RedirectResponse
     {
-        
-        $service = new Service($request->$validated());
+        $service = new Service($request->validated());
         $service->save();
         return redirect(route('services.index'));
     }
@@ -58,9 +61,10 @@ class ServiceController extends Controller
      */
     public function edit(Service $service) : View
     {
-        return view('services.edit',[
-            'service'=> $service
-           ]);
+        return view("services.edit", [
+            'service' => $service,
+            'types' => ServiceType::all()
+        ]);
     }
 
     /**
