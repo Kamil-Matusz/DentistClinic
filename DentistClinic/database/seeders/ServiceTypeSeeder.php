@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\ServiceType;
+
+class ServiceTypeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $data = [
+            ['type_name' => 'Dental Surgery'],
+            ['type_name' => 'Implants'],
+            ['type_name' => 'Childrens Dentistry'],
+            ['type_name' => 'Prevention']
+           ];
+           ServiceType::insert($data);
+    }
+}
