@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\Enums\UserRole;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,4 +25,5 @@ class AppServiceProvider extends ServiceProvider
         //
         Paginator::useBootstrap();
     }
+
 }

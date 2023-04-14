@@ -33,6 +33,11 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.index') }}">Services</a>
                         </li>
+                        @can('isAdmin')
+                        <li class="nav-item">
+                        <a class="nav-link" href="/users/list">User List</a>
+                        </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,7 +62,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/users/list">User List</a>
+                                    <a class="dropdown-item" href="/users/list">User List</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

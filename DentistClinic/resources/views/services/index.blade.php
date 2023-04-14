@@ -32,15 +32,17 @@
         <td>{{ $service-> description }}</td>
         <td>@if($service->hasType()){{ $service->type->type_name }}@endif</td>
         <td>
-            <a href="{{ route('services.edit', $service->id) }}">
-            <button class="btn btn-warning btn-sm">Edit</button>
-            </a>
             <a href="{{ route('services.show', $service->id) }}">
             <button class="btn btn-info btn-sm">Details</button>
+            </a>
+            @can('isAdmin')
+            <a href="{{ route('services.edit', $service->id) }}">
+            <button class="btn btn-warning btn-sm">Edit</button>
             </a>
             <a href="{{ route('services.destroy', $service->id) }}">
             <button class="btn btn-danger btn-sm">Delete</button>
             </a>
+            @endcan
         </td>
     </tr>
     @endforeach
