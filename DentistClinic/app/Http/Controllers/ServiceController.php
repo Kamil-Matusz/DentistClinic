@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\ServiceType;
 use Exception;
+use DB;
 
 use Illuminate\Http\RedirectResponse;
 
@@ -22,7 +23,16 @@ class ServiceController extends Controller
     public function index() : View 
     {
         return view('services.index',[
-            'services'=> Service::paginate(10)
+            'services'=> Service::paginate(5)
+           ]);
+    }
+
+    public function implants() : View 
+    {
+        $results = DB::select('select * from services where type_id = ?', [3]);
+        return view('services.implants',[
+            'services'=> $results,
+            'types' => ServiceType::all()
            ]);
     }
 

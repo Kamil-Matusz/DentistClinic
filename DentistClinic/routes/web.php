@@ -19,11 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/services", [ServiceController::class, 'index'])->name('services.index');
+Route::get("/services/implants", [ServiceController::class, 'implants'])->name('services.implants');
+
 Route::middleware(['auth', 'verified'])->group(function() {
 Route::get("users/list", [UserController::class, 'index'])->middleware('can:isAdmin');
 Route::get("users/{id}/delete", [UserController::class, 'destroy'])->name('users.destroy')->middleware('can:isAdmin');
 
-Route::get("/services", [ServiceController::class, 'index'])->name('services.index')->middleware('auth');;
 Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create')->middleware('can:isAdmin');;
 Route::post("/services", [ServiceController::class, 'store'])->name('services.store');
 Route::get("/services/edit/{service}", [ServiceController::class, 'edit'])->name('services.edit')->middleware('can:isAdmin');
