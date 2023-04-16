@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::get("/services", [ServiceController::class, 'index'])->name('services.index');
 Route::get("/services/implants", [ServiceController::class, 'implants'])->name('services.implants');
+Route::get("/services/dentalSurgery", [ServiceController::class, 'dentalSurgery'])->name('services.dentalSurgery');
+Route::get("/services/childrenDentistry", [ServiceController::class, 'childrenDentistry'])->name('services.childrenDentistry');
+Route::get("/services/prevention", [ServiceController::class, 'prevention'])->name('services.prevention');
 
 Route::middleware(['auth', 'verified'])->group(function() {
 Route::get("users/list", [UserController::class, 'index'])->middleware('can:isAdmin');

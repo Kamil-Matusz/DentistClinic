@@ -36,6 +36,15 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('services.dentalSurgery') }}">Dental Surgery</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('services.childrenDentistry') }}">Children Dentistry</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('services.prevention') }}">Prevention</a>
+                        </li>
                         @can('isAdmin')
                         <li class="nav-item">
                         <a class="nav-link" href="/users/list">User List</a>

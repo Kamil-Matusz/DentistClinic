@@ -36,6 +36,33 @@ class ServiceController extends Controller
            ]);
     }
 
+    public function dentalSurgery() : View 
+    {
+        $results = DB::select('select * from services where type_id = ?', [2]);
+        return view('services.dentalSurgery',[
+            'services'=> $results,
+            'types' => ServiceType::all()
+           ]);
+    }
+
+    public function childrenDentistry() : View 
+    {
+        $results = DB::select('select * from services where type_id = ?', [4]);
+        return view('services.childrenDentistry',[
+            'services'=> $results,
+            'types' => ServiceType::all()
+           ]);
+    }
+
+    public function prevention() : View 
+    {
+        $results = DB::select('select * from services where type_id = ?', [5]);
+        return view('services.prevention',[
+            'services'=> $results,
+            'types' => ServiceType::all()
+           ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
