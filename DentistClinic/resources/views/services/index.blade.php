@@ -20,11 +20,10 @@
     @can('isAdmin')
       <th scope="col">ID</th>
     @endcan
-      <th scope="col">Name</th>
+      <th scope="col-2">Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Description</th>
       <th scope="col">Type</th>
-      <th scope="col">Action</th>
+      <th scope="col-2">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +34,6 @@
         @endcan
         <td>{{ $service-> name }}</td>
         <td>{{ $service-> price }}</td>
-        <td>{{ $service-> description }}</td>
         <td>@if($service->hasType()){{ $service->type->type_name }}@endif</td>
         <td>
             <a href="{{ route('services.show', $service->id) }}">

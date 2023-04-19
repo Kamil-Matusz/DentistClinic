@@ -4,13 +4,21 @@
 <div class="container">
 <div class="row">
     <div class="col-10">
-        <h1>Service List</h1>
     </div>
     @can('isAdmin')
     <div class="col-2">
           <a class="float-right" href="{{ route('services.create') }}"> <button type="button" class="btn btn-success">Add new service</button></a>
         </div>
     @endcan
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <h2>Dentist Implants</h2>
+        </blockquote>
+          <figcaption class="blockquote-footer">
+            <h5 class="text-justify">Implantology is currently the most perfect method to replace missing teeth. Implants are very practical, durable and eliminate the discomfort that can often be felt when using removable dentures.
+                An implant is a small, titanium screw that, when implanted in the jawbone, replaces the tooth root. A porcelain or ceramic crown is mounted on it, the shade of which can be matched to the shade of natural teeth. The feeling of having such a tooth in practice is no different from natural teeth.</h5>
+          </figcaption>
+      </figure>
 </div>
 <div class="row">
     <hr/>

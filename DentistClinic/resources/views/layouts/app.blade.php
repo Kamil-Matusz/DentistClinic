@@ -33,6 +33,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.index') }}">Services</a>
                         </li>
+                        @can('isUser')
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
                         </li>
@@ -45,6 +46,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.prevention') }}">Prevention</a>
                         </li>
+                        @endcan
                         @can('isAdmin')
                         <li class="nav-item">
                         <a class="nav-link" href="/users/list">User List</a>
@@ -74,7 +76,6 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/users/list">User List</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -96,5 +97,6 @@
             @yield('content')
         </main>
     </div>
+    @include('layouts.footer')
 </body>
 </html>

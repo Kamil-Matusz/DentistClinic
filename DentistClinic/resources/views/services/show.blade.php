@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Service Details</div>
+            <div class="card" style="margin-top: 10%;">
+                <div class="card-header" style="text-align: center;">Service Details</div>
 
                 <div class="card-body">
                         <div class="row mb-3">
@@ -41,12 +41,15 @@
                                 @endif
                             </select>
                         </div>
-                        
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+            </br>
+            <a class="nav-link" href="{{ route('services.index') }}" style="text-align:center">
+                <button class="btn btn-success btn-sm">Return to Services List</button>
+            </a>
     </div>
 </div>
 @endsection
