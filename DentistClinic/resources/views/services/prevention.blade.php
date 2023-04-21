@@ -18,6 +18,7 @@
             <h5 class="text-justify">Implantology is currently the most perfect method to replace missing teeth. Implants are very practical, durable and eliminate the discomfort that can often be felt when using removable dentures.
                 An implant is a small, titanium screw that, when implanted in the jawbone, replaces the tooth root. A porcelain or ceramic crown is mounted on it, the shade of which can be matched to the shade of natural teeth. The feeling of having such a tooth in practice is no different from natural teeth.</h5>
           </figcaption>
+          <img src="{{URL('images/prevention.jpg')}}" class="img-thumbnail">
       </figure>
 </div>
 <div class="row">

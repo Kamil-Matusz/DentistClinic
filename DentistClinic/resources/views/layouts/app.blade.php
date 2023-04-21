@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md sticky-top navbar-light shadow-sm" style="background-color: #e3f2fd;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('Dentist Clinic', 'Dentist Clinic') }}
@@ -45,6 +45,12 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.prevention') }}">Prevention</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/gallery') }}">Gallery</a>
                         </li>
                         @endcan
                         @can('isAdmin')
