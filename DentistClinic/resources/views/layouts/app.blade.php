@@ -57,6 +57,9 @@
                         <li class="nav-item">
                         <a class="nav-link" href="/users/list">User List</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/reservations">Reservation List</a>
+                        </li>
                         @endcan
                     </ul>
 

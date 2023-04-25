@@ -30,4 +30,9 @@ class Service extends Model
     {
         return $this->hasCategory() && $this->category->id == $category_id;
     }
+
+    public function reservations(): BelongsTo
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 }

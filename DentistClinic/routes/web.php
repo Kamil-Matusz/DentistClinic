@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,11 @@ Route::get("/services/edit/{service}", [ServiceController::class, 'edit'])->name
 Route::post("/services/{service}", [ServiceController::class, 'update'])->name('services.update')->middleware('can:isAdmin');
 Route::get("/services/{service}", [ServiceController::class, 'show'])->name('services.show');
 Route::get("/services/{service}/delete", [ServiceController::class, 'destroy'])->name('services.destroy')->middleware('can:isAdmin');
+
+Route::get("/reservations", [ReservationController::class, 'index'])->name('reservations.index');
+Route::get("/reservations/create", [ReservationController::class, 'create'])->name('reservations.create');
+Route::post("/reservations", [ReservationController::class, 'store'])->name('reservations.store');
+
 });
 Auth::routes(['verify' => true]);
 
