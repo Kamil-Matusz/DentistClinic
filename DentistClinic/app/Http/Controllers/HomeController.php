@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('gallery');
     }
+
+    public function adminpanel()
+    {
+        return view('adminpanel');
+    }
 }

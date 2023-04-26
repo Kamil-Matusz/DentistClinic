@@ -33,6 +33,9 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.index') }}">Services</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/adminpanel">Admin Panel</a>
+                        </li>
                         @can('isUser')
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
@@ -51,14 +54,6 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ url('/gallery') }}">Gallery</a>
-                        </li>
-                        @endcan
-                        @can('isAdmin')
-                        <li class="nav-item">
-                        <a class="nav-link" href="/users/list">User List</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="/reservations">Reservation List</a>
                         </li>
                         @endcan
                     </ul>
