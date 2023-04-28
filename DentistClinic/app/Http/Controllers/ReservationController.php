@@ -38,9 +38,9 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(StoreReservationRequest $request) : RedirectResponse
     {
-        $reservation = new Reservation($request->all());
+        $reservation = new Reservation($request->validated());
         $reservation->save();
         return redirect(route('reservations.index'));
     }

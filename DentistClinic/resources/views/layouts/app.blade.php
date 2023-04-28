@@ -33,9 +33,11 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.index') }}">Services</a>
                         </li>
+                        @can('isAdmin')
                         <li class="nav-item">
                         <a class="nav-link" href="/adminpanel">Admin Panel</a>
                         </li>
+                        @endcan
                         @can('isUser')
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
