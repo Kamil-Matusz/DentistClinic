@@ -47,6 +47,11 @@
             <button class="btn btn-danger btn-sm">Delete</button>
             </a>
             @endcan
+            @can('isUser')
+            <a href="{{ route('reservations.create') }}">
+            <button class="btn btn-success btn-sm">Reserve Service</button>
+            </a>
+            @endcan
         </td>
     </tr>
     @endforeach

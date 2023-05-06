@@ -29,7 +29,7 @@ class ServiceController extends Controller
 
     public function implants() : View 
     {
-        $results = DB::select('select * from services where type_name = ?', [3]);
+        $results = DB::select('select * from services where type_id = ?', [3]);
         return view('services.implants',[
             'services'=> $results,
             'types' => ServiceType::all()
