@@ -36,7 +36,6 @@
                         <a class="nav-link" href="/adminpanel">Admin Panel</a>
                         </li>
                         @endcan
-                        @can('isUser')
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
                         </li>
@@ -55,7 +54,6 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ url('/gallery') }}">Gallery</a>
                         </li>
-                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

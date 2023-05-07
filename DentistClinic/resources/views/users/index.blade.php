@@ -27,6 +27,9 @@
           <a href="{{ route('users.destroy', $user->id) }}">
               <button class="btn btn-danger btn-sm">Delete</button>
           </a>
+          <a href="{{ route('users.edit', $user->id) }}">
+              <button class="btn btn-warning btn-sm">Edit</button>
+          </a>
         </td>
         </td>
     </tr>
