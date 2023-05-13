@@ -14,10 +14,16 @@ class Reservation extends Model
         'bookerName',
         'bookerSurname',
         'reservationDate',
+        'userId'
     ];
 
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 }

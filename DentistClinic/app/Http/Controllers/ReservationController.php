@@ -42,6 +42,7 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request) : RedirectResponse
     {
         $reservation = new Reservation($request->validated());
+        $reservation->userId = auth()->id();
         $reservation->save();
         return redirect(route('reservations.index'));
     }
@@ -77,9 +78,11 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(string $id)
     {
-        //
+        $flight = Reservation::find($id);
+        $flight->delete();
+        return redirect('/reservations');
     }
 
 }
