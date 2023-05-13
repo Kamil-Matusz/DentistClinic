@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use function PHPUnit\Framework\throwException;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Service;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class ReservationController extends Controller
 {

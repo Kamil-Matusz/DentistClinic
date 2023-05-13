@@ -40,7 +40,7 @@
                         <div class="row mb-3">
                             <label for="ReservationDate" class="col-md-4 col-form-label text-md-end">Reservation Date</label>
                             <div class="col-md-6">
-                                <input id="reservationDate" type="datetime-local" class="form-control @error('resevationDate') is-invalid @enderror" name="reservationDate" value="{{ old('reservationDate') }}" required autocomplete="reservationDate" autofocus>
+                                <input id="reservationDate" type="datetime-local" class="form-control @error('resevationDate') is-invalid @enderror" name="reservationDate" value="{{ old('reservationDate') }}" required autocomplete="reservationDate" autofocus required>
 
                                 @error('reservationDate')
                                     <span class="invalid-feedback" role="alert">
@@ -75,10 +75,30 @@
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
+
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var inputElement = document.getElementById("reservationDate");
+
+    inputElement.addEventListener("input", function(event) {
+        var selectedDate = new Date(event.target.value);
+        
+        if (
+            (selectedDate.getDay() === 6 || selectedDate.getDay() === 0) ||
+            (selectedDate.getHours() < 8 || selectedDate.getHours() > 17)
+        ) {
+            event.target.setCustomValidity("Select a date and time on working days (Monday to Friday) between 8:00 and 17:00.");
+        } else {
+            event.target.setCustomValidity("");
+        }
+    });
+</script>
 @endsection

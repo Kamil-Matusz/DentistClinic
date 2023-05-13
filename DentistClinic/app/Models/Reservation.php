@@ -13,7 +13,7 @@ class Reservation extends Model
         'serviceId',
         'bookerName',
         'bookerSurname',
-        'reservationDate'
+        'reservationDate',
     ];
 
     public function services(): HasMany
