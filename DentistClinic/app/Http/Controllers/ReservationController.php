@@ -93,4 +93,22 @@ class ReservationController extends Controller
         return redirect('/reservations');
     }
 
+    public function busyDates()
+    {
+        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->get();
+
+        $groupedReservations = $reservations->groupBy(function ($reservation) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('Y-m-d');
+        });
+
+        $occupiedHours = [];
+        foreach ($groupedReservations as $date => $reservations) {
+            $occupiedHours[$date] = $reservations->map(function ($reservation) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('H');
+            })->unique()->sort();
+        }
+
+        return view('reservations.busyDates', compact('occupiedHours'));
+    }
+
 }
