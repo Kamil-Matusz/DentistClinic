@@ -41,7 +41,6 @@
                         <a class="nav-link" href="/adminpanel">Admin Panel</a>
                         </li>
                         @endcan
-                        @can(!'isAdmin')
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.implants') }}">Implants</a>
                         </li>
@@ -54,7 +53,6 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('services.prevention') }}">Prevention</a>
                         </li>
-                        @endcan
                         <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
                         </li>

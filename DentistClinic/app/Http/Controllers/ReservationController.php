@@ -12,6 +12,7 @@ use function PHPUnit\Framework\throwException;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Service;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -43,8 +44,15 @@ class ReservationController extends Controller
     {
         $reservation = new Reservation($request->validated());
         $reservation->userId = auth()->id();
-        $reservation->save();
+        $dateTime = Carbon::parse(request('reservationDate'));
+        $availableReservation = Reservation::where('reservationDate', $dateTime)->first();
+        if($availableReservation) {
+            return redirect()->back()->with('error', 'A reservation for the specified date already exists..');
+        }
+        else {
+            $reservation->save();
         return redirect(route('reservations.index'));
+        }
     }
 
     /**
