@@ -54,6 +54,9 @@
                         <a class="nav-link" href="{{ route('services.prevention') }}">Prevention</a>
                         </li>
                         <li class="nav-item">
+                        <a class="nav-link" href="{{ route('reservations.busyDates') }}">Busy Dates & Hours</a>
+                        </li>
+                        <li class="nav-item">
                         <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">

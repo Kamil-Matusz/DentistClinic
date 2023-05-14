@@ -12,6 +12,7 @@ use function PHPUnit\Framework\throwException;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Service;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -42,8 +43,16 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request) : RedirectResponse
     {
         $reservation = new Reservation($request->validated());
-        $reservation->save();
+        $reservation->userId = auth()->id();
+        $dateTime = Carbon::parse(request('reservationDate'));
+        $availableReservation = Reservation::where('reservationDate', $dateTime)->first();
+        if($availableReservation) {
+            return redirect()->back()->with('error', 'A reservation for the specified date already exists..');
+        }
+        else {
+            $reservation->save();
         return redirect(route('reservations.index'));
+        }
     }
 
     /**
@@ -77,9 +86,29 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(string $id)
     {
-        //
+        $flight = Reservation::find($id);
+        $flight->delete();
+        return redirect('/reservations');
+    }
+
+    public function busyDates()
+    {
+        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->get();
+
+        $groupedReservations = $reservations->groupBy(function ($reservation) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('Y-m-d');
+        });
+
+        $occupiedHours = [];
+        foreach ($groupedReservations as $date => $reservations) {
+            $occupiedHours[$date] = $reservations->map(function ($reservation) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('H');
+            })->unique()->sort();
+        }
+
+        return view('reservations.busyDates', compact('occupiedHours'));
     }
 
 }
