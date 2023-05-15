@@ -45,10 +45,11 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request) : RedirectResponse
     {
         $reservation = new Reservation($request->validated());
-        $reservation->dentistId = 1;
+        $dentist = $request->input('dentistId');
+        $reservation->dentistId = $dentist;
         $reservation->userId = auth()->id();
         $dateTime = Carbon::parse(request('reservationDate'));
-        $availableReservation = Reservation::where('reservationDate', $dateTime)->first();
+        $availableReservation = Reservation::where('reservationDate', $dateTime)->where("dentistId",$dentist)->first();
         if($availableReservation) {
             return redirect()->back()->with('error', 'A reservation for the specified date already exists..');
         }
