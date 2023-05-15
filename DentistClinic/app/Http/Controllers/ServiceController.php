@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\ServiceType;
 use Exception;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\RedirectResponse;
 
