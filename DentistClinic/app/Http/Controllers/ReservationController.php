@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use function PHPUnit\Framework\throwException;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Service;
+use App\Models\Dentist;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Carbon\Carbon;
 
@@ -33,7 +34,8 @@ class ReservationController extends Controller
     public function create() : View
     {
         return view("reservations.create", [
-            'services' => Service::all()
+            'services' => Service::all(),
+            'dentists' => Dentist::all()
         ]);
     }
 
@@ -43,6 +45,7 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request) : RedirectResponse
     {
         $reservation = new Reservation($request->validated());
+        $reservation->dentistId = 1;
         $reservation->userId = auth()->id();
         $dateTime = Carbon::parse(request('reservationDate'));
         $availableReservation = Reservation::where('reservationDate', $dateTime)->first();

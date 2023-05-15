@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('bookerSurname', 255);
             $table->DateTime('reservationDate');
             $table->unsignedBigInteger('userId');
+            $table->unsignedBigInteger('dentistId');
             $table->timestamps();
         });
         Schema::table('reservations', function (Blueprint $table) {
             $table->foreign('serviceId')->references('id')->on('services');
             $table->foreign('userId')->references('id')->on('users');
+            $table->foreign('dentistId')->references('id')->on('dentists');
         });
     }
 
@@ -34,6 +36,7 @@ return new class extends Migration
         Schema::table('reservations', function (Blueprint $table) {
             $table->dropForeign('reservations_service_id_foreign');
             $table->dropForeign('reservations_user_id_foreign');
+            $table->dropForeign('reservations_dentist_id_foreign');
         });
         Schema::dropIfExists('reservations');
     }
