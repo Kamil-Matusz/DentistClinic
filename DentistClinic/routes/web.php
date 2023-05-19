@@ -42,7 +42,9 @@ Route::get("/services/{service}/delete", [ServiceController::class, 'destroy'])-
 Route::get("/reservations", [ReservationController::class, 'index'])->name('reservations.index');
 Route::get("/reservations/create", [ReservationController::class, 'create'])->name('reservations.create');
 Route::post("/reservations", [ReservationController::class, 'store'])->name('reservations.store');
-Route::get('reservations/busyDates', [ReservationController::class, 'busyDates'])->name('reservations.busyDates');
+Route::get('reservations/busyDates_KonradBieniasz', [ReservationController::class, 'busyDates_KonradBieniasz'])->name('reservations.busyDates_KonradBieniasz');
+Route::get('reservations/busyDates_PawełGaweł', [ReservationController::class, 'busyDates_PawełGaweł'])->name('reservations.busyDates_PawełGaweł');
+Route::get('reservations/busyDates_AgnieszkaJaros', [ReservationController::class, 'busyDates_AgnieszkaJaros'])->name('reservations.busyDates_AgnieszkaJaros');
 
 Route::get('/adminpanel', [App\Http\Controllers\HomeController::class, 'adminpanel'])->name('adminpanel')->middleware('can:isAdmin');
 
