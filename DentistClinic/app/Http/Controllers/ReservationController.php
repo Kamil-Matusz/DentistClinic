@@ -14,6 +14,7 @@ use App\Models\Service;
 use App\Models\Dentist;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -97,9 +98,10 @@ class ReservationController extends Controller
         return redirect('/reservations');
     }
 
-    public function busyDates()
+    public function busyDates_KonradBieniasz()
     {
-        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->get();
+        $dentistId = 1;
+        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->where('dentistId', $dentistId)->get();
 
         $groupedReservations = $reservations->groupBy(function ($reservation) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('Y-m-d');
@@ -112,7 +114,86 @@ class ReservationController extends Controller
             })->unique()->sort();
         }
 
-        return view('reservations.busyDates', compact('occupiedHours'));
+        return view('reservations.busyDates_KonradBieniasz', compact('occupiedHours'));
+    }
+
+    public function busyDates_PawełGaweł()
+    {
+        $dentistId = 2;
+        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->where('dentistId', $dentistId)->get();
+
+        $groupedReservations = $reservations->groupBy(function ($reservation) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('Y-m-d');
+        });
+
+        $occupiedHours = [];
+        foreach ($groupedReservations as $date => $reservations) {
+            $occupiedHours[$date] = $reservations->map(function ($reservation) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('H');
+            })->unique()->sort();
+        }
+
+        return view('reservations.busyDates_PawełGaweł', compact('occupiedHours'));
+    }
+
+    public function busyDates_AgnieszkaJaros()
+    {
+        $dentistId = 3;
+        $reservations = Reservation::where('reservationDate', '>=', Carbon::now())->where('dentistId', $dentistId)->get();
+
+        $groupedReservations = $reservations->groupBy(function ($reservation) {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('Y-m-d');
+        });
+
+        $occupiedHours = [];
+        foreach ($groupedReservations as $date => $reservations) {
+            $occupiedHours[$date] = $reservations->map(function ($reservation) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $reservation->reservationDate)->format('H');
+            })->unique()->sort();
+        }
+
+        return view('reservations.busyDates_PawełGaweł', compact('occupiedHours'));
+    }
+
+    public function yoursReservations() {
+        $dentistId = Auth::user()->id;
+        switch ($dentistId) {
+            case 5:
+                return $this->reservations_KonradBieniasz();
+                break;
+            case 6:
+                return $this->reservations_PawełGaweł();
+                break;
+            case 7:
+                return $this->reservations_AgnieszkaJaros();
+                break;
+            default:
+                abort(403);
+        }
+    }
+
+    private function reservations_KonradBieniasz() : View
+    {
+        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 1');
+        return view('reservations.yoursReservations',[
+            'reservations'=> $results
+           ]);
+    }
+
+    private function reservations_PawełGaweł() : View
+    {
+        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 2');
+        return view('reservations.yoursReservations',[
+            'reservations'=> $results
+           ]);
+    }
+
+    private function reservations_AgnieszkaJaros() : View
+    {
+        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 3');
+        return view('reservations.yoursReservations',[
+            'reservations'=> $results
+           ]);
     }
 
 }

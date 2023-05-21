@@ -7,11 +7,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title" style="text-align:center">Reception hours:</h2>
-                        <h5 style="text-align:center">Monday: 9.00 - 20.00</h5>
-                        <h5 style="text-align:center">Tuesday: 9.00 - 20.00</h5>
-                        <h5 style="text-align:center">Wednesday: 9.00 - 20.00</h5>
-                        <h5 style="text-align:center">Thursday: 9.00 - 20.00</h5>
-                        <h5 style="text-align:center">Friday: 9.00 - 20.00</h5>
+                        <h5 style="text-align:center">Monday: 9.00 - 19.00</h5>
+                        <h5 style="text-align:center">Tuesday: 9.00 - 19.00</h5>
+                        <h5 style="text-align:center">Wednesday: 9.00 - 19.00</h5>
+                        <h5 style="text-align:center">Thursday: 9.00 - 19.00</h5>
+                        <h5 style="text-align:center">Friday: 9.00 - 19.00</h5>
                     </div>
                 </div>
             </div>
