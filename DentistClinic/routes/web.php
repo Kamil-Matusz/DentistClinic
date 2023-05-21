@@ -45,6 +45,7 @@ Route::post("/reservations", [ReservationController::class, 'store'])->name('res
 Route::get('reservations/busyDates_KonradBieniasz', [ReservationController::class, 'busyDates_KonradBieniasz'])->name('reservations.busyDates_KonradBieniasz');
 Route::get('reservations/busyDates_PawełGaweł', [ReservationController::class, 'busyDates_PawełGaweł'])->name('reservations.busyDates_PawełGaweł');
 Route::get('reservations/busyDates_AgnieszkaJaros', [ReservationController::class, 'busyDates_AgnieszkaJaros'])->name('reservations.busyDates_AgnieszkaJaros');
+Route::get('/reservations/yoursReservations', [ReservationController::class, 'yoursReservations'])->name('reservations.yoursReservations');
 
 Route::get('/adminpanel', [App\Http\Controllers\HomeController::class, 'adminpanel'])->name('adminpanel')->middleware('can:isAdmin');
 
