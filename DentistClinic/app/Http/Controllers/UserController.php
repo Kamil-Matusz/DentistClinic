@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,6 +17,14 @@ class UserController extends Controller
     {
         return View('users.index', [
             'users' => User::paginate(10)
+        ]);
+    }
+
+    public function account() {
+        $user = auth()->user();
+        $userId = $user->id;
+        return View('users.account', [
+            'users' => User::where('id', $userId)
         ]);
     }
 

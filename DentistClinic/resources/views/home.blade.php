@@ -17,11 +17,28 @@
                     <h1 style="text-align:center">{{ __('You are logged in!') }}</h1>
                     <br/>
                     <h2 style="text-align: center">{{ __('Use selected services') }}</h2>
+
+                    <h2 style="text-align: center">
+                        <a href="{{ route('users.account') }}">
+                        <button class="btn btn-success btn-lg">Info about your account</button>
+                        </a>
+                    </h2>
+
+                    @can('isAdmin')
+                    <h2 style="text-align: center">
+                        <a href="/adminpanel">
+                        <button class="btn btn-success btn-lg">Admin Panel</button>
+                        </a>
+                    </h2>
+                    @endcan
+
                 </div>
             </div>
+            @can('isUser')
             <div class="card">
             <img src="{{('images/wallpaper.jpg')}}" class="img-fluid" alt="Responsive image">
             </div>
+            @endcan
         </div>
     </div>
 </div>
