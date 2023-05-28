@@ -29,37 +29,29 @@ class ServiceController extends Controller
 
     public function implants() : View 
     {
-        $results = DB::select('select * from services where type_id = ?', [3]);
-        $services = Service::whereIn('id', array_column($results, 'id'))->paginate(2);
+        $services = Service::where('type_id', 3)->paginate(2);
         $types = ServiceType::all();
-
         return view('services.implants', compact('services', 'types'));
     }
 
     public function dentalSurgery() : View 
     {
-        $results = DB::select('select * from services where type_id = ?', [2]);
-        $services = Service::whereIn('id', array_column($results, 'id'))->paginate(2);
+        $services = Service::where('type_id', 2)->paginate(2);
         $types = ServiceType::all();
-
         return view('services.dentalSurgery', compact('services', 'types'));
     }
 
     public function childrenDentistry() : View 
     {
-        $results = DB::select('select * from services where type_id = ?', [4]);
-        $services = Service::whereIn('id', array_column($results, 'id'))->paginate(2);
+        $services = Service::where('type_id', 4)->paginate(2);
         $types = ServiceType::all();
-
         return view('services.childrenDentistry', compact('services', 'types'));
     }
 
     public function prevention() : View 
     {
-        $results = DB::select('select * from services where type_id = ?', [5]);
-        $services = Service::whereIn('id', array_column($results, 'id'))->paginate(2);
+        $services = Service::where('type_id', 5)->paginate(2);
         $types = ServiceType::all();
-
         return view('services.prevention', compact('services', 'types'));
     }
 
