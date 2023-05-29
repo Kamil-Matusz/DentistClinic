@@ -21,6 +21,8 @@ class ServicesSeeder extends Seeder
             ['name' => 'Filling a cavity without tooth preparation','price' => 200.00,'description' => 'Filling a cavity without tooth preparation','type_id' => 2],
             ['name' => 'Surgical consultation','price' => 100.00,'description' => 'Surgical consultation','type_id' => 4],
             ['name' => 'Porcelain crown on implant','price' => 900.00,'description' => 'Porcelain crown on implant','type_id' => 1],
+            ['name' => 'Implant placement','price' => 800.00,'description' => 'Implant placement','type_id' => 2],
+            ['name' => 'Tooth removal','price' => 150.00,'description' => 'Tooth removal','type_id' => 1],
            ];
            Service::insert($data);
     }
