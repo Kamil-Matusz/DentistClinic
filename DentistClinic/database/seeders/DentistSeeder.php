@@ -14,9 +14,9 @@ class DentistSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['dentistName' => 'Konrad Bieniasz','userId' => 5],
-            ['dentistName' => 'Paweł Gaweł','userId' => 6],
-            ['dentistName' => 'Agnieszka Jaros','userId' => 7],
+            ['dentistName' => 'Konrad Bieniasz','userId' => 2],
+            ['dentistName' => 'Paweł Gaweł','userId' => 3],
+            ['dentistName' => 'Agnieszka Jaros','userId' => 4],
         ];
         Dentist::insert($data);
     }

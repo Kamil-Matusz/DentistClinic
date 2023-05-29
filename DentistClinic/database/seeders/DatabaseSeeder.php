@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ServiceTypeSeeder::class,
             ServicesSeeder::class,
-            DentistSeeder::class
+            DentistSeeder::class,
+            UsersSeeder::class
         ]);
     }
 }
