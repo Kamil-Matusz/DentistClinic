@@ -24,6 +24,12 @@
                         </a>
                     </h2>
 
+                    <h2 style="text-align: center">
+                        <a href="{{ route('reservations.userReservations') }}">
+                        <button class="btn btn-success btn-lg">Display your reservations</button>
+                        </a>
+                    </h2>
+
                     @can('isAdmin')
                     <h2 style="text-align: center">
                         <a href="/adminpanel">

@@ -67,7 +67,7 @@
                             <a class="dropdown-item" href="{{ route('reservations.busyDates_AgnieszkaJaros') }}">Agnieszka Jaros</a>
                             </div>
                         </li>
-                        @if(Auth::check() && (Auth::user()->id === 5 || Auth::user()->id === 6 || Auth::user()->id === 7))
+                        @if(Auth::check() && (Auth::user()->id === 2 || Auth::user()->id === 3 || Auth::user()->id === 4))
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('reservations.yoursReservations') }}">Yours Reservations</a>
                         </li>

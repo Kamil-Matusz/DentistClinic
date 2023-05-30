@@ -25,7 +25,8 @@ class StoreReservationRequest extends FormRequest
             'bookerName' => 'required|max:255',
             'bookerSurname' => 'required|max:255',
             'serviceId' => 'required|integer',
-            'reservationDate' => 'required|after:today'
+            'reservationDate' => 'required|after:today',
+            'dentistId' => 'required|integer'
         ];
     }
 }

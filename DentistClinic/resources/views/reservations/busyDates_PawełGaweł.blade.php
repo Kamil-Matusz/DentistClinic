@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<h1 style="text-align:center">Reservation Calendar</h1>
+<h1 style="text-align:center">Reservation Calendar for Paweł Gaweł</h1>
 
         <div class="row">
             @foreach($occupiedHours as $date => $hours)

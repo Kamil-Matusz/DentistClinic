@@ -23,8 +23,21 @@ class ReservationController extends Controller
      */
     public function index() : View
     {
-        $results = DB::select('SELECT reservations.id,services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id');
+        $results = Reservation::select('reservations.id', 'services.name', 'reservations.bookerName', 'reservations.bookerSurname', 'reservations.reservationDate')
+            ->leftJoin('services', 'reservations.serviceId', '=', 'services.id')
+            ->get();
         return view('reservations.index',[
+            'reservations'=> $results
+           ]);
+    }
+
+    public function userReservations() : View {
+        $userId = auth()->id();
+        $results = Reservation::select('reservations.id', 'services.name', 'reservations.bookerName', 'reservations.bookerSurname', 'reservations.reservationDate')
+        ->leftJoin('services', 'reservations.serviceId', '=', 'services.id')
+        ->where('reservations.userId', $userId)
+        ->get();
+        return view('reservations.userReservations',[
             'reservations'=> $results
            ]);
     }
@@ -158,13 +171,13 @@ class ReservationController extends Controller
     public function yoursReservations() {
         $dentistId = Auth::user()->id;
         switch ($dentistId) {
-            case 5:
+            case 2:
                 return $this->reservations_KonradBieniasz();
                 break;
-            case 6:
+            case 3:
                 return $this->reservations_PawełGaweł();
                 break;
-            case 7:
+            case 4:
                 return $this->reservations_AgnieszkaJaros();
                 break;
             default:
