@@ -30,7 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 Route::get("users/list", [UserController::class, 'index'])->middleware('can:isAdmin');
 Route::get("users/account", [UserController::class, 'account'])->name('users.account');
 Route::get("/users/edit/{user}", [UserController::class, 'edit'])->name('users.edit')->middleware('can:isAdmin');
-Route::post("/users/{user}", [UserController::class, 'update'])->name('users.update')->middleware('can:isAdmin');
+Route::get("/users/editAccount", [UserController::class, 'editAccount'])->name('users.editAccount');
+Route::post("/users/{user}", [UserController::class, 'update'])->name('users.update');
 Route::get("users/{id}/delete", [UserController::class, 'destroy'])->name('users.destroy')->middleware('can:isAdmin');
 
 Route::get("/services/create", [ServiceController::class, 'create'])->name('services.create')->middleware('can:isAdmin');;

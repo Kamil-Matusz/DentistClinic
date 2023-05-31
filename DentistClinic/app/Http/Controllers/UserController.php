@@ -28,6 +28,12 @@ class UserController extends Controller
         ]);
     }
 
+    public function editAccount() {
+        $user = auth()->user();
+
+        return view('users.editAccount', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -70,7 +76,12 @@ class UserController extends Controller
     {
         $user->fill($request->all());
         $user->save();
+        if($user->id === 1) {
         return redirect('users/list');
+        }
+        else {
+            return redirect(route('users.account'));
+        }
     }
 
     /**
