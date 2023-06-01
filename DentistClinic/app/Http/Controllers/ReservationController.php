@@ -69,7 +69,7 @@ class ReservationController extends Controller
         }
         else {
             $reservation->save();
-        return redirect(route('reservations.index'));
+        return redirect(route('reservations.reservationCreated'));
         }
     }
 
@@ -207,6 +207,11 @@ class ReservationController extends Controller
         return view('reservations.yoursReservations',[
             'reservations'=> $results
            ]);
+    }
+
+    public function reservationCreated() : View
+    {
+        return view('reservations.reservationCreated');
     }
 
 }

@@ -17,6 +17,7 @@
       <th scope="col">Booker Name</th>
       <th scope="col">Booker Surname</th>
       <th scope="col">Reservation Date</th>
+      <th scope="col">Delete Reservation</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,11 @@
         <td>{{ $reservation-> bookerName }}</td>
         <td>{{ $reservation-> bookerSurname }}</td>
         <td>{{ $reservation-> reservationDate }}</td>
+        <td>
+        <a href="{{ route('reservations.destroy', $reservation->id) }}">
+            <button class="btn btn-danger btn-sm">Delete reservation</button>
+            </a>
+        </td>
     </tr>
     @endforeach
   </tbody>

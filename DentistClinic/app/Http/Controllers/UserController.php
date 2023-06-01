@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreUsersRequest;
 
 class UserController extends Controller
 {
@@ -72,7 +73,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user) : RedirectResponse
+    public function update(StoreUsersRequest $request, User $user) : RedirectResponse
     {
         $user->fill($request->all());
         $user->save();
