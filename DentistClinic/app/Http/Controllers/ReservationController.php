@@ -187,7 +187,11 @@ class ReservationController extends Controller
 
     private function reservations_KonradBieniasz() : View
     {
-        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 1');
+        $results = DB::table('reservations')
+            ->leftJoin('services', 'reservations.serviceId', '=', 'services.id')
+            ->select('services.name', 'reservations.bookerName', 'reservations.bookerSurname', 'reservations.reservationDate')
+            ->where('dentistId', 1)
+            ->get();
         return view('reservations.yoursReservations',[
             'reservations'=> $results
            ]);
@@ -195,7 +199,11 @@ class ReservationController extends Controller
 
     private function reservations_PawełGaweł() : View
     {
-        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 2');
+        $results = DB::table('reservations')
+            ->leftJoin('services', 'reservations.serviceId', '=', 'services.id')
+            ->select('services.name', 'reservations.bookerName', 'reservations.bookerSurname', 'reservations.reservationDate')
+            ->where('dentistId', 2)
+            ->get();
         return view('reservations.yoursReservations',[
             'reservations'=> $results
            ]);
@@ -203,7 +211,11 @@ class ReservationController extends Controller
 
     private function reservations_AgnieszkaJaros() : View
     {
-        $results = DB::select('SELECT services.name,reservations.bookerName,reservations.bookerSurname,reservations.reservationDate FROM reservations LEFT JOIN services ON reservations.serviceId = services.id WHERE dentistId = 3');
+        $results = DB::table('reservations')
+            ->leftJoin('services', 'reservations.serviceId', '=', 'services.id')
+            ->select('services.name', 'reservations.bookerName', 'reservations.bookerSurname', 'reservations.reservationDate')
+            ->where('dentistId', 3)
+            ->get();
         return view('reservations.yoursReservations',[
             'reservations'=> $results
            ]);

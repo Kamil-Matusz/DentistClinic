@@ -41,7 +41,7 @@ Route::post("/services/{service}", [ServiceController::class, 'update'])->name('
 Route::get("/services/{service}", [ServiceController::class, 'show'])->name('services.show');
 Route::get("/services/{service}/delete", [ServiceController::class, 'destroy'])->name('services.destroy')->middleware('can:isAdmin');
 
-Route::get("/reservations", [ReservationController::class, 'index'])->name('reservations.index');
+Route::get("/reservations", [ReservationController::class, 'index'])->name('reservations.index')->middleware('can:isAdmin');
 Route::get("/reservations/reservationCreated", [ReservationController::class, 'reservationCreated'])->name('reservations.reservationCreated');
 Route::get("/reservations/create", [ReservationController::class, 'create'])->name('reservations.create');
 Route::post("/reservations", [ReservationController::class, 'store'])->name('reservations.store');
