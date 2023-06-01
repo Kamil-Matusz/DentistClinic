@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('adminpanel');
     }
 
     /**
@@ -39,5 +39,10 @@ class HomeController extends Controller
     public function adminpanel()
     {
         return view('adminpanel');
+    }
+
+    public function dentists()
+    {
+        return view('dentists');
     }
 }
