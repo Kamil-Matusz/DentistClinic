@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('service_types', function (Blueprint $table) {
@@ -17,14 +14,11 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('services', function (Blueprint $table) {
-            $table->unsignedBigInteger('type_id')->nullable()->after('description');
+            $table->unsignedBigInteger('type_id')->after('description');
             $table->foreign('type_id')->references('id')->on('service_types');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('services', function (Blueprint $table) {

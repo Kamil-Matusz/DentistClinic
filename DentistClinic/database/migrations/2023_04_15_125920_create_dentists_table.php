@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('dentists', function (Blueprint $table) {
@@ -21,10 +18,6 @@ return new class extends Migration
             $table->foreign('userId')->references('id')->on('users');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('dentists', function (Blueprint $table) {

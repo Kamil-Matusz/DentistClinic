@@ -7,6 +7,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title" style="text-align:center">Your booking has been successfully created</h2>
+                            <div class="text-center">
+                                <img src="{{URL('images/happy_tooth.jpg')}}" class="img-fluid">
+                            </div>
                     </div>
                 </div>
             </div>

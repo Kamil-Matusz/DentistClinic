@@ -14,6 +14,7 @@ use Illuminate\View\View;
 use App\Http\Requests\StoreServiceRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use function PHPUnit\Framework\throwException;
+use Illuminate\Database\QueryException;
 
 class ServiceController extends Controller
 {
@@ -109,10 +110,19 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        $flight = Service::find($id);
-        $flight->delete();
-        return redirect('/services');
+    try {
+        $service = Service::find($id);
+
+        if ($service) {
+            $service->delete();
+            return redirect('/services')->with('success', 'The service has been successfully deleted.');
+        } else {
+            return redirect('/services')->with('error', 'The service with the specified ID was not found.');
+        }
+    } catch (QueryException $e) {
+        return redirect('/services')->with('error', 'You cannot remove a service that has been assigned to a reservation');
+    }
     }
 }

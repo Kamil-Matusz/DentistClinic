@@ -8,9 +8,6 @@ use App\Models\Service;
 
 class ServicesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $data = [

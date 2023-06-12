@@ -10,6 +10,7 @@ use App\Http\Requests\StoreReservationRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use function PHPUnit\Framework\throwException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
 use App\Models\Service;
 use App\Models\Dentist;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -104,12 +105,21 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $flight = Reservation::find($id);
-        $flight->delete();
-        return redirect('/reservations');
+    public function destroy(string $id): RedirectResponse
+{
+    try {
+        $reservation = Reservation::find($id);
+
+        if ($reservation) {
+            $reservation->delete();
+            return redirect('/reservations')->with('success', 'The reservation has been successfully deleted.');
+        } else {
+            return redirect('/reservations')->with('error', 'No booking with the given ID found.');
+        }
+    } catch (QueryException $e) {
+        return redirect('/reservations')->with('error', "You cannot delete this reservation because it is in a relationship with the user");
     }
+}
 
     public function busyDates_KonradBieniasz()
     {

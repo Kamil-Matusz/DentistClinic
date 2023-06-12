@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Dentist;
+use Illuminate\Database\QueryException;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -88,10 +90,19 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $flight = User::find($id);
-        $flight->delete();
-        return redirect('users/list');
+    public function destroy(string $id): RedirectResponse
+{
+    try {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect('users/list')->with('success', 'The user has been successfully deleted.');
+        } else {
+            return redirect('users/list')->with('error', 'The user with the specified ID was not found.');
+        }
+    } catch (QueryException $e) {
+        return redirect('users/list')->with('error', "You can't remove a user who has reservations or is a dentist");
     }
+}
 }
